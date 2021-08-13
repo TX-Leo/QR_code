@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+                .process_gif{  /*显示动态barh*/
+                    background-image:url("./process.gif");/*加载动图/
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    margin:0 auto;
+                    width: 600px;/*大小*/
+                    height: 357px;
+                    position: relative;
+                    z-index: 1;
+                }
+
+                .process_picture{
+                }
+                .show_txt{  /*显示自动输出的文字*/
+                    margin:0 auto;
+                    background-color: azure;
+                    width: 600px;
+                    height: 170px;
+                    position: relative;
+                    text-align: center;
+                    padding-top: 10px;
+                    z-index: 1;
+                }
+        </style>
+        <style type="text/css">
+            #p4{ /*显示文字的格式*/
+                font-family:cursive;/*字体格式*/
+                font-size:5em;/*字体大小*/
+            }
+        </style>
+    </head>
+    <body>
+        <!-- 设置背景图片 -->
+        <body background="./html_background1.jpg"  style=" background-repeat:no-repeat ;background-size:100% 100%;
+        background-attachment: fixed;">
+        <!-- 插入一张图片（居中） -->
+        <div align="center">
+        <img src="./loving_heart.jpg" />
+        </div>	
+        <!-- 加载一张动图gif -->
+        <div class="process_gif" id="process"></div>
+        <!-- 加载一共=个文本框 -->
+        <div class="show_txt" id="content_1"></div>
+        <!-- 下面实现一个一个字输出的效果（有下划线的光标） -->
+        <script type="text/javascript">
+            /// 显示文字功能 ----------------------------------
+            let divTyping = document.getElementById('content_1'); //通过id获取div节点
+            let a = 0;
+            timer = 0;
+            str = "我们已经相遇 110 天<br>告白后过了 86 天<br>First Kiss 至今 86 天";
+            function typing () {
+                if (a <= str.length) { // 从第一个字开始逐个打印
+                    divTyping.innerHTML = str.slice(0, a++) + '_';
+                    timer = setTimeout(typing, 300); // 设置打字时间间隔
+                }
+                else {
+                    divTyping.innerHTML = str; //结束打字,移除 _ 光标
+                    clearTimeout(timer);
+                }
+            }
+            
+            window.onload=function(){
+                    typing();
+                    setTimeout(function(){
+                        thisdiv = document.getElementById("process");
+                        thisdiv.style.backgroundImage = "url('./process_stop.png')"; // 将div背景图替换，最后驻留的图片
+                    },21500); // 单位是毫秒，根据动态图的时长来设置
+            }
+        </script>
+        <!-- 换行 -->
+        <br></br>
+        <!-- 居中写字 -->
+        <div align="center">
+            <font color="#00dddd">
+                <p id="p4">2131 forever</p>  
+            </font>
+        </div>
+    </body>
+</html>
+    
